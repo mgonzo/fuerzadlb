@@ -1,0 +1,8 @@
+node_modules/*
+tmp/*
+.sass-cache/*
+public/stylesheets/*
+notes/*
+*.bak
+*.sav
+_*
