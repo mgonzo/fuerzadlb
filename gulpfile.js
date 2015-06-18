@@ -7,7 +7,8 @@ var sass = require('gulp-ruby-sass');
 var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('sass', function () {
-  return sass('/home/mgonzo/webapps/mgonzomatic/nodeapps/fuerzadlb/public/sass/style.scss')
+  //return sass('/home/mgonzo/webapps/mgonzomatic/nodeapps/fuerzadlb/public/sass/style.scss')
+  return sass('public/sass/style.scss')
     .on('error', function (err) { 
       console.error('Error', err.message);
     })

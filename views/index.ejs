@@ -3,46 +3,68 @@
   <head>
     <title><%= title %></title>
     <link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Habibi' rel='stylesheet' type='text/css'>
     <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/css/foundation.css"/>
-    <link rel='stylesheet' href='/fuerzadlb/stylesheets/style.css' />
+    <!--link rel='stylesheet' href='/fuerzadlb/stylesheets/style.css' /-->
+    <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <header class="">
-      <h1 class="logo">fuerza<span class="dlb">dlb</span></h1>
-      <div class="phone"></div>
-      <div class="address"></div>
+    <header>
+      <div class="row">
+        <div class="column">
+          <h1 class="logo">fuerza<span class="dlb">dlb</span></h1>
+          <div class="phone"></div>
+          <div class="address"></div>
+        </div>
+      </div>
     </header>
-    <section id="main" class="row">
-      <div class="row banner">
-        <span>"Fuerza de los Barrios is helping families to learn from each other and to live better."</span>
+    <section id="main">
+      <div class="banner">
+        <div class="row">
+          <div class="column">
+            <span>"Fuerza de los Barrios is helping families to learn from each other and to live better."</span>
+          </div>
+        </div>
       </div>
       <div class="hero-image"></div>
       <div class="row priority">
-        <div class="map"></div>
-        <div class="info-placeholder">
+        <div class="columns large-6">
+          <div class="map"></div>
         </div>
-        <div class="contact" style="display:none">
-          <input class="name" type="text"> 
-          <input class="email" type="text"> 
-          <input class="phone" type="text"> 
-          <textarea class="content"></textarea>
-          <button class="submit">Submit</button>
+        <div class="columns large-6">
+          <div class="info-placeholder"></div>
+          <div class="contact" style="display:none">
+            <input class="name" type="text"> 
+            <input class="email" type="text"> 
+            <input class="phone" type="text"> 
+            <textarea class="content"></textarea>
+            <button class="submit">Submit</button>
+          </div>
         </div>
-      </div>
-      <div class="row informational">
-        <p>Creating nurturing environments for children promotes healthy development and can prevent mental, emotional and behavioral problems. However, it is not unusual for children to sometimes develop problems during childhood that, like a broken bone, should be attended to and set properly so they can grow stronger into adulthood.</p>
-        <p>Counseling sessions are focused on individual growth and understanding in the context of family, education and community. Our goal is to help every child achieve knowledge and realization of their responsibility for the important role they play in shaping their own future and the role they play in shaping a positive, growth oriented community.</p>
-        <p>We provide counseling in English and Spanish for the general community, with a focus on Spanish language services. We accept clients with limited income.<p>
-      </div>
+      </div><!--// priority -->
+      <div class="informational">
+        <div class="row">
+          <div class="column">
+            <p>Creating nurturing environments for children promotes healthy development and can prevent mental, emotional and behavioral problems. However, it is not unusual for children to sometimes develop problems during childhood that, like a broken bone, should be attended to and set properly so they can grow stronger into adulthood.</p>
+            <p>Counseling sessions are focused on individual growth and understanding in the context of family, education and community. Our goal is to help every child achieve knowledge and realization of their responsibility for the important role they play in shaping their own future and the role they play in shaping a positive, growth oriented community.</p>
+            <p>We provide counseling in English and Spanish for the general community, with a focus on Spanish language services. We accept clients with limited income.<p>
+          </div>
+        </div>
+      </div><!--// informational -->
     </section>
     <footer>
-      <div class="column"></div>
-      <div class="column">
-        <h3 class="logo">fuerza<span class="dlb">dlb</span></h3>
-        <p>By working to bring people together into community discussions, we hope to foster positive attitudes towards mental health as a sign of community health.</p>
-        <p>Effective family, school and community programs can help children and their families. Treating children when the first signs of a problem appear is important because what happens in childhood can affect a person for a lifetime.</p>
+      <div class="row">
+        <div class="column large-4">
+          <div class="house"></div>
+        </div>
+        <div class="column large-4">
+          <h3 class="logo">fuerza<span class="dlb">dlb</span></h3>
+          <p>By working to bring people together into community discussions, we hope to foster positive attitudes towards mental health as a sign of community health.</p>
+        </div>
+        <div class="column large-4">
+          <p>Effective family, school and community programs can help children and their families. Treating children when the first signs of a problem appear is important because what happens in childhood can affect a person for a lifetime.</p>
+        </div>
       </div>
-      <div class="column"></div>
     </footer>
 
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
