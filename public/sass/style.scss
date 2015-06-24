@@ -1,9 +1,19 @@
 $bluedark: #2c303f;
-$lightergray: #f2f2f2;
+$graylighter: #f2f2f2;
 $red: #e05355;
+$redlight: #ff7d7f;
 
 $padding-top: 30px;
 $padding-bottom: 30px;
+
+.button,
+button {
+  background-color: $red;
+}
+.button:hover,
+button:hover {
+  background-color: $redlight;
+}
 
 body {
   font-family: 'Cabin', sans-serif;
@@ -14,6 +24,9 @@ a {
 }
 
 .logo {
+  font-family: 'Cabin', sans-serif;
+  font-weight: bold;
+
   .dlb {
     color: $red;
   }
@@ -40,14 +53,38 @@ header {
 
   .column {
       text-align: center;
+      margin-top: 1em;
     span {
-      font-size: 3em;
+      font-size: 2.65em;
     }
   }
 }
 
+#map {
+  width: 100%;
+  height: 450px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+#contact {
+  margin-top: 1em;
+  margin-bottom: 1em;
+
+  .name,
+  .email,
+  .phone {
+    width: 20em;
+  }
+
+  .content {
+    height: 10em;
+  }
+
+}
+
 .informational {
-  background-color: $lightergray;
+  background-color: $graylighter;
   padding-top: $padding-top;
   padding-bottom: $padding-bottom;
 
@@ -68,6 +105,16 @@ footer {
   p {
     font-size: 1.2em;
     line-height: 1.2em;
+  }
+
+  .logo {
+    position: absolute; 
+    top: 0;
+  }
+
+  p:first-child {
+    position: relative;
+    top: 3em;
   }
 
   .house {
