@@ -35,8 +35,40 @@ app.viewDefinition.push(Backbone.View.extend({
   initialize: function () {
     this.render();
   },
-  events: [
-  ],
+
+  events: {
+    'click .submit': 'sendMail'
+  },
+
+  sendMail: function (e) {
+    console.log('sending mail...');
+    $el = $(this.el);
+    var message = JSON.stringify({ 
+      name: $el.find('.name').val(),
+      email: $el.find('.email').val(),
+      phone: $el.find('.phone').val(),
+      body: $el.find('.body').val()
+    });
+
+    console.log(message);
+    var jqXhr = $.ajax({
+      url: '/contact',
+      method: 'POST',
+      dataType: 'json',
+      data: message
+    });
+
+    jqXhr.done(function (data, status, jqXhr) {
+      console.log(status);
+      console.log(data);
+    });
+
+    jqXhr.fail(function (jqXhr, status, error) {
+      console.log(error);
+    });
+
+  },
+
   render: function () {
   }
 }));
