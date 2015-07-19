@@ -43,12 +43,13 @@ app.viewDefinition.push(Backbone.View.extend({
   sendMail: function (e) {
     console.log('sending mail...');
     $el = $(this.el);
-    var message = JSON.stringify({ 
-      name: $el.find('.name').val(),
+    var message = {
+      lname: $el.find('.lname').val(),
+      fname: $el.find('.fname').val(),
       email: $el.find('.email').val(),
       phone: $el.find('.phone').val(),
       body: $el.find('.body').val()
-    });
+    };
 
     console.log(message);
     var jqXhr = $.ajax({
