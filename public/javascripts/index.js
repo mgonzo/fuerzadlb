@@ -53,7 +53,7 @@ app.viewDefinition.push(Backbone.View.extend({
 
     console.log(message);
     var jqXhr = $.ajax({
-      url: '/contact',
+      url: '/messages',
       method: 'POST',
       dataType: 'json',
       data: message
