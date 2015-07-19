@@ -58,16 +58,25 @@ header {
 .banner {
   background-color: $bluedark;
   color: white;
-  height: 200px;
+  height: 160px;
   font-family: 'Habibi', serif;
 
   .column {
       text-align: center;
-      margin-top: 2em;
+      margin-top: 1em;
     span {
       font-size: 2.65em;
     }
   }
+}
+
+.hero-image {
+  width: 100%;
+  height: 320px;
+  background-color: #5ca2dd;
+  background-image: url("../images/children_w1400_blur5.jpg");
+  background-position: center 0;
+  background-repeat: no-repeat;
 }
 
 #map {
