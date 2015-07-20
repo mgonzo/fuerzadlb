@@ -7,11 +7,39 @@ var app = {
 app.viewDefinition.push(Backbone.View.extend({
   el: '#map',
   className: 'map',
+  $map: null,
+  events: { 
+    'click .view-map': 'toggleMap' 
+  },
   initialize: function () {
+    this.$map = $(this.el).children('.map-canvas');
+    $('.view-map').html('View Map');
+
+    if (this.$map.css('display') === 'none') {
+      return;
+    }
+
     this.render();
   },
+  toggleMap: function () {
+    if (this.$map.hasClass('open')) {
+      // close map
+      this.$map.css({'display': 'none'});
+      $('.view-map').html('View Map');
+    } else {
+      this.$map.css({'display': 'block'});
+      $('.view-map').html('Close Map');
+
+      if (this.$map.children().length < 1) {
+        this.render();
+      }
+    }
+
+    this.$map.toggleClass('open')
+    $('.view-map').toggleClass('open');
+  },
   render: function () {
-    var mapCanvas = this.el;
+    var mapCanvas = this.$map[0];
     var myLatlng = new google.maps.LatLng(32.736864, -97.11343);
     var mapOptions = {
         center: myLatlng,
