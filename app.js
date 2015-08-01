@@ -22,6 +22,7 @@ var messages = require('./routes/messages')(messageModel);
 // routes
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var admin = require('./routes/admin');
 
 
 // start app
@@ -42,6 +43,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/admin', admin);
 app.use('/messages', messages);
 
 // catch 404 and forward to error handler
