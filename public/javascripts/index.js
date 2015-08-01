@@ -1,7 +1,6 @@
 var app = {
   viewDefinition: [],
   views: []
-
 };
 
 app.viewDefinition.push(Backbone.View.extend({
