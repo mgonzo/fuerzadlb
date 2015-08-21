@@ -7,7 +7,6 @@ var MessageList = React.createClass({
 
   componentDidMount: function() {
     $.get(this.props.source, function (data) {
-      console.log(data);
       if (this.isMounted()) {
         this.setState({
           messages: JSON.parse(data)
@@ -16,21 +15,27 @@ var MessageList = React.createClass({
     }.bind(this));
   },
 
+  handleClick: function (e) {
+    console.log(e);
+  },
+
   render: function() {
     return (
         <div>
-          <ul> { 
-            this.state.messages.map( function (item, index) { 
-              return <li>
-                <div>{item.messageId}</div>
-                <div>{item.date}</div>
-                <div>{item.fname}</div>
-                <div>{item.lname}</div>
-                <div>{item.deleted}</div>
-                <div>{item.email}</div>
-                <div>{item.phone}</div>
-                <div>{item.body}</div>
-              </li> 
+          <ul> {
+            this.state.messages.map( function (item, index) {
+              return <li className="">
+                <span></span>
+                <span className="date">{item.date}</span>
+                <span className="name">
+                  <span className="fname"> {item.fname} </span>
+                  <span> {item.lname} </span>
+                </span>
+                <span className="email"><a href="#">{item.email}</a></span>
+                <span className="phone">{item.phone}</span>
+                <span className="mark-as-read"><input type="checkbox"/></span>
+                <span className="message-body">{item.body}</span>
+              </li>
             })
           } </ul>
         </div>

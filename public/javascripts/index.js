@@ -7,8 +7,8 @@ app.viewDefinition.push(Backbone.View.extend({
   el: '#map',
   className: 'map',
   $map: null,
-  events: { 
-    'click .view-map': 'toggleMap' 
+  events: {
+    'click .view-map': 'toggleMap'
   },
   initialize: function () {
     this.$map = $(this.el).children('.map-canvas');
@@ -78,7 +78,6 @@ app.viewDefinition.push(Backbone.View.extend({
       body: $el.find('.body').val()
     };
 
-    console.log(message);
     var jqXhr = $.ajax({
       url: '/messages',
       method: 'POST',

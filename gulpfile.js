@@ -9,11 +9,21 @@ var sourcemaps = require('gulp-sourcemaps');
 gulp.task('sass', function () {
   //return sass('/home/mgonzo/webapps/mgonzomatic/nodeapps/fuerzadlb/public/sass/style.scss')
   return sass('public/sass/style.scss')
-    .on('error', function (err) { 
+    .on('error', function (err) {
       console.error('Error', err.message);
     })
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('./public/stylesheets'))
 });
 
-gulp.task('default', ['sass']);
+gulp.task('admin-sass', function () {
+  //return sass('/home/mgonzo/webapps/mgonzomatic/nodeapps/fuerzadlb/public/sass/style.scss')
+  return sass('public/sass/admin.scss')
+    .on('error', function (err) {
+      console.error('Error', err.message);
+    })
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('./public/stylesheets'))
+});
+
+gulp.task('default', ['sass', 'admin-sass']);

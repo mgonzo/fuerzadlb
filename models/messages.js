@@ -44,9 +44,12 @@ var Messages = (function () {
   };
 
   Messages.prototype.readAllMessages = function (callback) {
-    this.Message.find(function (err, messages) {
+    this.Message.
+    find().
+    sort( {date: -1} ).
+    exec(function (err, messages) {
       if(err) throw err;
-      
+
       var list = [];
       messages.forEach(function (message) {
         list.push({
