@@ -86,18 +86,26 @@ app.viewDefinition.push(Backbone.View.extend({
     });
 
     jqXhr.done(function (data, status, jqXhr) {
-      console.log(status);
-      console.log(data);
+      if (status === 201) {
+        $el.find('.lname').val('');
+        $el.find('.fname').val('');
+        $el.find('.email').val('');
+        $el.find('.phone').val('');
+        $el.find('.body').val('');
+        return;
+      }
+
+      // TODO: else show some failure message
     });
 
     jqXhr.fail(function (jqXhr, status, error) {
       console.log(error);
+      // TODO: else show some failure message
     });
 
   },
 
-  render: function () {
-  }
+  render: function () { }
 }));
 
 app.viewDefinition.push(Backbone.View.extend({

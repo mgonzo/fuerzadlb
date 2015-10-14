@@ -26,7 +26,7 @@ var MessageList = React.createClass({
             this.state.messages.map( function (item, index) {
               return <li className="">
                 <span></span>
-                <span className="date">{item.date}</span>
+                <span className="date">{moment(item.date).format('YYYY MMMM DD h:mm:ss A')}</span>
                 <span className="name">
                   <span className="fname"> {item.fname} </span>
                   <span> {item.lname} </span>
@@ -44,6 +44,6 @@ var MessageList = React.createClass({
 });
 
 React.render(
-    <MessageList source="http://localhost:3000/messages"/>,
+    <MessageList source="/messages"/>,
     document.getElementById('messages')
 );

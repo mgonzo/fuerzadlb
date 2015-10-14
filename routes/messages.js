@@ -13,7 +13,7 @@ module.exports = function (messages) {
         fname: message.fname,
         body: message.body
       }, function (message) {
-        res.end(JSON.stringify(message));
+        res.sendStatus(201);
     });
   });
 

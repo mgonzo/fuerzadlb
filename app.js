@@ -1,4 +1,7 @@
 var express = require('express');
+var http = require('http');
+var https = require('https');
+var fs = require('fs');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -12,7 +15,7 @@ var mongoose = require('mongoose');
 // pass connected model into the router
 // for operations
 //
-// probably can do all this 
+// maybe can do all this 
 // in a cleaner way
 mongoose.connect('mongodb://localhost/fuerzadlb');
 var Messages = require('./models/messages');
@@ -77,5 +80,19 @@ app.use(function(err, req, res, next) {
   });
 });
 
-app.listen(3000);
+//app.listen(3000);
+http.createServer(app).listen(3000);
 
+/*
+ *
+ * https://devcenter.heroku.com/articles/ssl-certificate-self
+ * http://greengeckodesign.com:8880/blog/2013/06/15/creating-an-ssl-certificate-for-node-dot-js/
+ */
+var sslOptions = {
+  key: fs.readFileSync('./ssl/server.key'),
+  cert: fs.readFileSync('./ssl/server.crt'),
+  requestCert: true,
+  rejectUnauthorized: false
+};
+
+https.createServer(sslOptions, app).listen(3001);
