@@ -9,6 +9,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+var passport = require('passport');
+//var passportLocal = require('passport-local');
+var LocalStrategy = require('passport-local').Strategy;
+var session = require('express-session');
+
 // mongodb connection
 // require Message model
 // create new model with mongoose connection
@@ -43,6 +48,50 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+//// setting up passport ////
+app.use(session({ secret: 'keyboard cat' }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    var User = {
+    'username': 'foo',
+    'password': 'bar'
+    };
+
+    if (password === User.password) {
+      console.log(password);
+      console.log(User.password);
+      var user = {'username': 'foo', 'id': '100'};
+      return done(null, user);
+    } else {
+      console.log(password);
+      console.log(User.password);
+      return done(null, false, { message: 'Incorrect password.' });
+    }
+  }
+));
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  var user = {'username': 'foo', 'id': '100'};
+  done(null, user);
+});
+
+app.get('/login', function (req, res, next) {
+  res.render('login', { title: 'Login' });
+});
+
+app.post('/login',
+  passport.authenticate('local', { successRedirect: '/admin',
+                                   failureRedirect: '/login'})
+);
+////////////////////////
 
 app.use('/', routes);
 app.use('/users', users);

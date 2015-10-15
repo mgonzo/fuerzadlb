@@ -3,7 +3,13 @@ var router = express.Router();
 
 /* GET admin page. */
 router.get('/', function(req, res, next) {
-  res.render('admin', { title: 'Admin' });
+  if (!req.session || !req.session.passport || !req.session.passport.user) {
+    res.redirect('/login');
+  } else {
+    console.log(req.session);
+    console.log(req.sessionID);
+    res.render('admin', { title: 'Admin' });
+  }
 });
 
 module.exports = router;
