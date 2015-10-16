@@ -1,5 +1,4 @@
 var express = require('express');
-var http = require('http');
 var https = require('https');
 var fs = require('fs');
 var path = require('path');
@@ -8,11 +7,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-
-var passport = require('passport');
-//var passportLocal = require('passport-local');
-var LocalStrategy = require('passport-local').Strategy;
 var session = require('express-session');
+
+var UUID = require('./helpers/uuid');
+var uuid = new UUID();
 
 // mongodb connection
 // require Message model
@@ -31,7 +29,7 @@ var messages = require('./routes/messages')(messageModel);
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var admin = require('./routes/admin');
-
+var login = require('./routes/login');
 
 // start app
 var app = express();
@@ -49,54 +47,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-//// setting up passport ////
-app.use(session({ secret: 'keyboard cat' }));
-app.use(passport.initialize());
-app.use(passport.session());
-
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    var User = {
-    'username': 'foo',
-    'password': 'bar'
-    };
-
-    if (password === User.password) {
-      console.log(password);
-      console.log(User.password);
-      var user = {'username': 'foo', 'id': '100'};
-      return done(null, user);
-    } else {
-      console.log(password);
-      console.log(User.password);
-      return done(null, false, { message: 'Incorrect password.' });
-    }
-  }
-));
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-  var user = {'username': 'foo', 'id': '100'};
-  done(null, user);
-});
-
-app.get('/login', function (req, res, next) {
-  res.render('login', { title: 'Login' });
-});
-
-app.post('/login',
-  passport.authenticate('local', { successRedirect: '/admin',
-                                   failureRedirect: '/login'})
-);
-////////////////////////
+// session setup
+app.use(session({ 
+  getid: function () {
+    return uuid.getNewId();
+  },
+  secret: process.env.FDLB_SECRET
+}));
 
 app.use('/', routes);
 app.use('/users', users);
 app.use('/admin', admin);
 app.use('/messages', messages);
+app.use('/login', login);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -129,9 +92,6 @@ app.use(function(err, req, res, next) {
   });
 });
 
-//app.listen(3000);
-http.createServer(app).listen(3000);
-
 /*
  *
  * https://devcenter.heroku.com/articles/ssl-certificate-self
@@ -144,4 +104,4 @@ var sslOptions = {
   rejectUnauthorized: false
 };
 
-https.createServer(sslOptions, app).listen(3001);
+https.createServer(sslOptions, app).listen(3000);
