@@ -8,6 +8,7 @@ router.get('/', function(req, res, next) {
   } else {
     console.log(req.session);
     console.log(req.sessionID);
+    console.log(req.session.passport.user);
     res.render('admin', { title: 'Admin' });
   }
 });
