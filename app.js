@@ -1,5 +1,5 @@
 var express = require('express');
-var https = require('https');
+var http = require('http');
 var fs = require('fs');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -92,16 +92,4 @@ app.use(function(err, req, res, next) {
   });
 });
 
-/*
- *
- * https://devcenter.heroku.com/articles/ssl-certificate-self
- * http://greengeckodesign.com:8880/blog/2013/06/15/creating-an-ssl-certificate-for-node-dot-js/
- */
-var sslOptions = {
-  key: fs.readFileSync('./ssl/server.key'),
-  cert: fs.readFileSync('./ssl/server.crt'),
-  requestCert: true,
-  rejectUnauthorized: false
-};
-
-https.createServer(sslOptions, app).listen(3000);
+http.createServer(app).listen(3000);
